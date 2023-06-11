@@ -1,8 +1,11 @@
 ﻿using Autofac;
 using Autofac.Core;
 using SimApi.Data.Repository;
+using SimApi.Data.Uow;
 using SimApi.Operation;
 using SimApi.Operation.TransactionReports;
+using SimApi.Schema;
+using SimApi.Service.RestExtension;
 
 namespace SimApi.Service.DependencyResolver.Autofac
 {
@@ -10,6 +13,7 @@ namespace SimApi.Service.DependencyResolver.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<UserLogService>().As<IUserLogService>();
             builder.RegisterType<TokenService>().As<ITokenService>();
             builder.RegisterType<UserService>().As<IUserService>();
@@ -21,7 +25,8 @@ namespace SimApi.Service.DependencyResolver.Autofac
             builder.RegisterType<DapperCategoryService>().As<IDapperCategoryService>();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
-            builder.RegisterType<UserRepository>().As<IUserRepository>();   
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+
         }
     }
 }

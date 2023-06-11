@@ -23,7 +23,6 @@ public class Startup
         services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
         services.AddCustomSwaggerExtension();
         services.AddDbContextExtension(Configuration);
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddMapperExtension();
         services.AddJwtExtension();
     }
